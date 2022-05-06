@@ -1,0 +1,14 @@
+{% macro recursive_list(list) %}
+<ul>
+    {% for item in list %} {% if item is iterable %} {{ recursive_list(item) }}
+    {% else %}
+    <li><a href="{{ item.filepath }}">{{ item.title }}</a></li>
+    {% endif %} {% endfor %}
+</ul>
+{% endmacro %}
+
+<div class="Sidebar">
+    <div class="sidebar-content">
+        {{ recursive_list(tree) }}
+    </div>
+</div>
